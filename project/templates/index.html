@@ -1,0 +1,72 @@
+<!-- jextends -->
+{% extends 'base.html' %} {% block body %}
+
+<!-- Add Todos -->
+<div class="container my-3">
+  <h2>Add Todo of {{name}}</h2>
+  <form action="/" method="POST">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Todo Title</label>
+      <input
+        type="text"
+        name="title"
+        class="form-control"
+        id="todo-title"
+        aria-describedby="emailHelp"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label"
+        >Todo Description</label
+      >
+      <input type="text" name="desc" class="form-control" id="todo-desc" />
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+
+<!-- Todos table -->
+<div class="container">
+  <h2>Todos</h2>
+  <!-- jifelse -->
+  {% if allTodo| length ==0 %} no records found {% else %}
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">SNo.</th>
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col">Created At</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- jfor -->
+      {% for todo in allTodo %}
+      <tr>
+        <th scope="row">{{loop.index}}</th>
+        <td>{{todo.title}}</td>
+        <td>{{todo.desc}}</td>
+        <td>{{todo.date_created}}</td>
+        <td>
+          <a
+            href="/update/{{todo.sno}}"
+            type="button"
+            class="btn btn-outline-dark btn-sm m-1"
+            >Update</a
+          >
+          <a
+            href="/delete/{{todo.sno}}"
+            type="button"
+            class="btn btn-outline-dark btn-sm m-1"
+            >Delete</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+</div>
+
+{% endblock body %}

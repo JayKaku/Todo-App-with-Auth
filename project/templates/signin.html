@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% block body %}
+<div class="container my-3">
+  {% with messages = get_flashed_messages() %} {% if messages %} {% for message
+  in messages %}
+  <div class="alert alert-danger" role="alert">{{ message }}</div>
+  {% endfor %} {% endif %} {% endwith %}
+  <h2>Signup</h2>
+  <form action="/signup" method="POST">
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input
+        type="email"
+        name="email"
+        required
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+      />
+      <div id="emailHelp" class="form-text">
+        We'll never share your email with anyone else.
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="login" class="form-label">Name</label>
+      <input
+        type="text"
+        name="name"
+        required
+        class="form-control"
+        id="login"
+        aria-describedby="login"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input
+        type="password"
+        name="password"
+        required
+        class="form-control"
+        id="exampleInputPassword1"
+      />
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1" />
+      <label class="form-check-label" for="exampleCheck1">Remember me</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+{% endblock body %}
